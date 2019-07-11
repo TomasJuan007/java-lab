@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+	<bean id ="javaBean" class="com.tomasjuan007.javalab.spring.JavaBean">
+		<property name="userName">
+			<value>李小龙</value>
+		</property>
+		<property name="password">
+			<value>BruceLee</value>
+		</property>
+	</bean>
+
+</beans>

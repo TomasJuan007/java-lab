@@ -1,4 +1,3 @@
-
 package com.tomasjuan007.javalab.tree;
 
 import java.util.List;
@@ -28,7 +27,7 @@ class PathResolver {
                 if (!definition.getToVersion().equals(to)) {
                     System.out.println(String.format("To %s did not match with %s, searching deeper using (%s, %s)", to, definition, definition.getToVersion(), to));
                     Tree next = getTree(definition.getToVersion(), to);
-                    if (next.containsValidPath()) {
+                    if (next.getBestPath() != null) {
                         System.out.println(String.format("Found step (%s, %s): %s", from, definition.getToVersion(), next.getBestPath()));
                         node.setChildTree(next);
                     } else {

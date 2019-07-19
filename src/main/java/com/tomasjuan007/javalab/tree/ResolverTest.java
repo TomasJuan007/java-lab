@@ -24,14 +24,25 @@ public class ResolverTest {
         PathResolver pathResolver = new PathResolver(steps);
 
         Path bestPath = pathResolver.findBestPath("1.0.0", "1.0.3");
-        Path resultPath = new Path(new StepDefinition[] { _100_101, _101_103 });
+        Path resultPath = new Path();
+        resultPath.addStep(_100_101);
+        resultPath.addStep(_101_103);
+//        boolean flag = true;
+//        for (int index = 0; index < bestPath.getSteps().size(); index++) {
+//            if (resultPath.getSteps().size() < index || !steps.get(index).equals(resultPath.getSteps().get(index))) {
+//                flag = false;
+//            }
+//        }
+//        if (!flag) throw new Exception();
         if (!bestPath.equals(resultPath)) {
             throw new Exception();
         }
         System.out.println();
         bestPath = pathResolver.findBestPath("1.0.1", "1.0.5");
-        resultPath = new Path(new StepDefinition[] { _101_103, _103_105 });
-        if (!bestPath.equals(resultPath)) {
+        Path resultPath2 = new Path();
+        resultPath2.addStep(_101_103);
+        resultPath2.addStep(_103_105);
+        if (!bestPath.equals(resultPath2)) {
             throw new Exception();
         }
 

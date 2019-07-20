@@ -10,7 +10,7 @@ public class ResolverTest {
     private static StepDefinition _C_D = new StepDefinition("C", "D");
     private static StepDefinition _B_D = new StepDefinition("B", "D");
     private static StepDefinition _D_E = new StepDefinition("D", "E");
-    private static StepDefinition _C_E = new StepDefinition("A", "D");
+    private static StepDefinition _A_D = new StepDefinition("A", "D");
     private static List<StepDefinition> steps = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
@@ -20,7 +20,7 @@ public class ResolverTest {
         steps.add(_C_D);
         steps.add(_B_D);
         steps.add(_D_E);
-        steps.add(_C_E);
+        steps.add(_A_D);
         PathResolver pathResolver = new PathResolver(steps);
 
         Path bestPath = pathResolver.findBestPath("A", "D");

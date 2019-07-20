@@ -12,34 +12,49 @@ class PathResolver {
 
     Path findBestPath(String from, String to) {
         Tree tree = getTree(from, to);
-        return tree.getBestPath();
+        return getBestPath(tree, to);
     }
 
     private Tree getTree(String from, String to) {
-        Tree resultTree = new Tree(to);
-        System.out.println(String.format("Determining tree (%s to %s)", from, to));
+        Tree resultTree = new Tree();
 
         for (StepDefinition definition : availableSteps) {
             TreeNode node;
             if (definition.getFromVersion().equals(from)) {
-                System.out.println(String.format("Matched from %s with %s", from, definition));
-                node = new TreeNode(definition.getToVersion(), definition);
+                node = new TreeNode(definition);
                 if (!definition.getToVersion().equals(to)) {
-                    System.out.println(String.format("To %s did not match with %s, searching deeper using (%s, %s)", to, definition, definition.getToVersion(), to));
                     Tree next = getTree(definition.getToVersion(), to);
-                    if (next.getBestPath() != null) {
-                        System.out.println(String.format("Found step (%s, %s): %s", from, definition.getToVersion(), next.getBestPath()));
+                    if (getBestPath(next, to) != null) {
                         node.setChildTree(next);
-                    } else {
-                        System.out.println(String.format("Detected a dead end (%s, %s)", from, to));
                     }
-                } else {
-                    System.out.println(String.format("Matched to %s with %s -> path complete!", to, definition));
                 }
                 resultTree.addNode(node);
             }
         }
         return resultTree;
+    }
+
+    Path getBestPath(Tree tree, String value) {
+        Path result = null;
+        for (TreeNode node : tree.getNodes()) {
+            Path candidatePath = new Path();
+            if (node.getStepDefinition().getToVersion().equals(value)) {
+                candidatePath.addStep(node.getStepDefinition());
+            } else if (node.getChildTree() != null) {
+                candidatePath.addStep(node.getStepDefinition());
+                Path temp = getBestPath(node.getChildTree(), value);
+                if (temp != null) {
+                    for (StepDefinition step : temp.getSteps()) {
+                        candidatePath.addStep(step);
+                    }
+                }
+            }
+            if (!candidatePath.getSteps().isEmpty() &&
+                    (result == null || candidatePath.getSteps().size() <= result.getSteps().size())) {
+                result = candidatePath;
+            }
+        }
+        return result;
     }
 
 }

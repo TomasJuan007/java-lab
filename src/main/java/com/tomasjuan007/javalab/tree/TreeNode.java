@@ -1,23 +1,23 @@
 package com.tomasjuan007.javalab.tree;
 
 class TreeNode {
-    private StepDefinition stepDefinition;
+    private Step step;
     private Tree childTree;
 
-    TreeNode(StepDefinition stepDefinition) {
-        this.stepDefinition = stepDefinition;
+    TreeNode(Step step) {
+        this.step = step;
     }
 
-    void setChildTree(Tree childTree) {
-        this.childTree = childTree;
+    Step getStep() {
+        return step;
     }
 
     Tree getChildTree() {
         return childTree;
     }
 
-    StepDefinition getStepDefinition() {
-        return stepDefinition;
+    void setChildTree(Tree childTree) {
+        this.childTree = childTree;
     }
 
 }

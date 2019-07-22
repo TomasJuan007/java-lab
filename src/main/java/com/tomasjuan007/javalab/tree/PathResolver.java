@@ -4,9 +4,9 @@ import java.util.List;
 
 class PathResolver {
 
-    private List<StepDefinition> availableSteps;
+    private List<Step> availableSteps;
 
-    PathResolver(List<StepDefinition> availableSteps) {
+    PathResolver(List<Step> availableSteps) {
         this.availableSteps = availableSteps;
     }
 
@@ -18,12 +18,12 @@ class PathResolver {
     private Tree getTree(String from, String to) {
         Tree resultTree = new Tree();
 
-        for (StepDefinition definition : availableSteps) {
+        for (Step step : availableSteps) {
             TreeNode node;
-            if (definition.getFromVersion().equals(from)) {
-                node = new TreeNode(definition);
-                if (!definition.getToVersion().equals(to)) {
-                    Tree next = getTree(definition.getToVersion(), to);
+            if (step.getFromVersion().equals(from)) {
+                node = new TreeNode(step);
+                if (!step.getToVersion().equals(to)) {
+                    Tree next = getTree(step.getToVersion(), to);
                     if (getBestPath(next, to) != null) {
                         node.setChildTree(next);
                     }
@@ -38,19 +38,19 @@ class PathResolver {
         Path result = null;
         for (TreeNode node : tree.getNodes()) {
             Path candidatePath = new Path();
-            if (node.getStepDefinition().getToVersion().equals(value)) {
-                candidatePath.addStep(node.getStepDefinition());
+            if (node.getStep().getToVersion().equals(value)) {
+                candidatePath.addStep(node.getStep());
             } else if (node.getChildTree() != null) {
-                candidatePath.addStep(node.getStepDefinition());
+                candidatePath.addStep(node.getStep());
                 Path temp = getBestPath(node.getChildTree(), value);
                 if (temp != null) {
-                    for (StepDefinition step : temp.getSteps()) {
+                    for (Step step : temp.getSteps()) {
                         candidatePath.addStep(step);
                     }
                 }
             }
-            if (!candidatePath.getSteps().isEmpty() &&
-                    (result == null || candidatePath.getSteps().size() <= result.getSteps().size())) {
+            if (!candidatePath.getSteps().isEmpty() && (result == null
+                    || candidatePath.getSteps().size() <= result.getSteps().size())) {
                 result = candidatePath;
             }
         }

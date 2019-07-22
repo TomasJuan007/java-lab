@@ -1,11 +1,10 @@
 package com.tomasjuan007.javalab.tree;
 
-class StepDefinition {
-
+class Step {
     private String from;
     private String to;
 
-    StepDefinition(String from, String to) {
+    Step(String from, String to) {
         this.from = from;
         this.to = to;
     }
@@ -19,6 +18,6 @@ class StepDefinition {
     }
 
     public String toString() {
-        return "StepDefinition("+from+"->"+to+")";
+        return "Step("+from+"->"+to+")";
     }
 }

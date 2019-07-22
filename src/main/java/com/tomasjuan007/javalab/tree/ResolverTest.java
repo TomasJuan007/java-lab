@@ -5,21 +5,20 @@ import java.util.List;
 
 public class ResolverTest {
 
-    private static StepDefinition _A_B = new StepDefinition("A", "B");
-    private static StepDefinition _B_C = new StepDefinition("B", "C");
-    private static StepDefinition _C_D = new StepDefinition("C", "D");
-    private static StepDefinition _B_D = new StepDefinition("B", "D");
-    private static StepDefinition _D_E = new StepDefinition("D", "E");
-    private static StepDefinition _A_D = new StepDefinition("A", "D");
-    private static List<StepDefinition> steps = new ArrayList<>();
+    private static Step _A_B = new Step("A", "B");
+    private static Step _B_C = new Step("B", "C");
+    private static Step _C_D = new Step("C", "D");
+    private static Step _D_E = new Step("D", "E");
+    private static Step _B_D = new Step("B", "D");
+    private static Step _A_D = new Step("A", "D");
+    private static List<Step> steps = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-
         steps.add(_A_B);
         steps.add(_B_C);
         steps.add(_C_D);
-        steps.add(_B_D);
         steps.add(_D_E);
+        steps.add(_B_D);
         steps.add(_A_D);
         PathResolver pathResolver = new PathResolver(steps);
 
@@ -33,10 +32,10 @@ public class ResolverTest {
         System.out.println(bestPath);
     }
 
-    public static boolean verify(Path bestPath, StepDefinition... args) throws Exception {
+    public static boolean verify(Path bestPath, Step... args) throws Exception {
         boolean result = true;
         int argsSize = args.length;
-        List<StepDefinition> bestPathSteps = bestPath.getSteps();
+        List<Step> bestPathSteps = bestPath.getSteps();
         if (bestPathSteps.size() != argsSize) {
             return false;
         }

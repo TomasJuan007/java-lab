@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Path {
 
-    private List<StepDefinition> steps = new ArrayList<>();
+    private List<Step> steps = new ArrayList<>();
 
-    List<StepDefinition> getSteps() {
+    List<Step> getSteps() {
         return steps;
     }
 
-    void addStep(StepDefinition step) {
+    void addStep(Step step) {
         steps.add(step);
     }
 

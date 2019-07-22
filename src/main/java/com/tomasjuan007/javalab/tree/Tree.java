@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Tree {
-
     private List<TreeNode> nodes = new ArrayList<>();
 
     List<TreeNode> getNodes() {

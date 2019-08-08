@@ -2,6 +2,10 @@ package com.tomasjuan007.javalab.acm;
 
 import java.util.Scanner;
 
+/**
+ * 2016-09-06 CVTE
+ *
+ */
 public class Bracket {
 	
 	private static boolean validate(String str){
@@ -32,7 +36,6 @@ public class Bracket {
 		return index == 0;
 	}
 	public static void main(String[] args) {
-		System.out.println("2016-09-06 CVTE");
 		String str1 = "0{1(2(3)4)(5{6}7)8}9";
 		System.out.println("使用说明： 输入字符串判断括号是否匹配，输入以0开头字符串退出");
 		System.out.println("示例\n"+str1+'\n'+validate(str1));

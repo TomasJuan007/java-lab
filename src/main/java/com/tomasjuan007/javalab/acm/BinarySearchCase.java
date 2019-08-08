@@ -2,14 +2,17 @@ package com.tomasjuan007.javalab.acm;
 
 import java.util.Scanner;
 
+/**
+ * 2016-09-11 Tencent
+ * online 1st programming Test
+ */
 public class BinarySearchCase{
-	public static void main(String[] args){
-		System.out.println("Tencent 1st programming Test 2016-09-11 online");
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int in = sc.nextInt();
 		sc.close();
 		transfer(in);
-		}
+	}
 	
 	private static void transfer(int in){
 		int[] result = new int[8];

@@ -3,11 +3,13 @@ package com.tomasjuan007.javalab.acm;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * 2016-09-06 CVTE
+ */
 public class StackReverse {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		System.out.println("2016-09-06 CVTE");
 		Scanner sc;
 		while(true){
 			sc = new Scanner(System.in);

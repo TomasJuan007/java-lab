@@ -1,7 +1,11 @@
 package com.tomasjuan007.javalab.acm;
-//2016-09-23 Huawei first Test
+
 import java.util.*;
 
+/**
+ * 2016-09-23 Huawei
+ * first Test
+ */
 public class SubString{
 	public static void main(String[] args){
         char[] temp = new char[100];

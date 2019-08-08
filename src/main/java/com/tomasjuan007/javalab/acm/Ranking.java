@@ -1,11 +1,14 @@
 package com.tomasjuan007.javalab.acm;
-//Huawei second Test 2016-09-23
-/*
+
+/**
+ * 2016-09-23 Huawei
+ * second Test
  * input example
  * LOD GRADE:NAME=XiaoMing,MATH=80,LANG=90;
 LOD GRADE:NAME=XiaoHong,LANG=60,MATH=100;
 LOD GRADE:NAME=XiaoMei,MATH=70,LANG=90;
-LST GRADE:NAME=XiaoHong;*/
+LST GRADE:NAME=XiaoHong;
+ */
 import java.util.*;
 public class Ranking{
 	public static void main(String[] args){

@@ -2,10 +2,12 @@ package com.tomasjuan007.javalab.acm;
 
 import java.util.Scanner;
 
+/**
+ * 2016-09-01 Tencent
+ */
 public class SnakeMatrix {
 
 	public static void main(String[] args) {
-		System.out.println("2016-09-01 Tencent");
 		Scanner sc = new Scanner(System.in);
 		int size = sc.nextInt();
 		sc.close();

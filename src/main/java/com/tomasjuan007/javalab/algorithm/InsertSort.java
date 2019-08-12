@@ -1,62 +1,53 @@
 package com.tomasjuan007.javalab.algorithm;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class InsertSort {
-
-	
-	public static void main(String[] args) {
-	Scanner sc = new Scanner(System.in);
-	String line = sc.nextLine();
-	sc.close();
-	String[] split = line.split(" ");
-	List<String> list =  Arrays.asList(split); 
-	for(int i=0;i<list.size();i++){
-		String s = list.get(i);
-		if (" ".equals(s)) {
-			list.remove(i);
-		}
-	}
-	int[] ints = new int[list.size()];
-	for(int i=0;i<ints.length;i++){
-		ints[i] = Integer.parseInt(list.get(i));
-	}
-	// DIY
-	for(int i = 1; i <  ints.length; i++){
-		int in = i;
-		for(int j = i-1; j >= 0; j--){
-			
-			if (ints[j] > ints[i]) {
-			in = j;
+	private static void insertSort(int[] ints) {
+		for(int i=0; i<ints.length; i++) {
+			int temp = ints[i];
+			for(int j=i-1; j>=0; j--) {
+				if (ints[j] > ints[i]) {
+					ints[j+1] = ints[j];
+				} else {
+					ints[j+1] = temp;
+					break;
+				}
 			}
 		}
-		int temp = ints[i];
-		for(int k = i; k > in; k--){
-			ints[k] = ints[k-1];
+	}
+
+	public static void main(String[] args) {
+		int[] ints = parseInput();
+		insertSort(ints);
+		formatOutput(ints);
+	}
+
+	private static void formatOutput(int[] ints) {
+		for(int i = 0; i < ints.length-1; i++) {
+			int anInt = ints[i];
+			System.out.print(String.format("%d ", anInt));
 		}
-		ints[in] = temp;
-		
+		System.out.println(ints[ints.length-1]);
 	}
-	
-	/* answer
-         for (int i = 1; i < ints.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (ints[i] <= ints[j]) {
-                    int temp = ints[i];
-                    for (int k = i; k >= j && k > 0; k--) {
-                        ints[k] = ints[k - 1];
-                    }
-                    ints[j] = temp;
-                }
-            }
-        }
-	 */
-	for(int i = 0; i < ints.length-1; i++){
-		int anInt = ints[i];
-		System.out.print(String.format("%d ", anInt));
-	}
-	System.out.println(ints[ints.length-1]);
+
+	private static int[] parseInput() {
+		Scanner sc = new Scanner(System.in);
+		String line = sc.nextLine();
+		sc.close();
+		String[] split = line.split(" ");
+		List<String> newList = new ArrayList<>();
+		for (String s : split) {
+			if (!"".equals(s)) {
+				newList.add(s);
+			}
+		}
+		int[] ints = new int[newList.size()];
+		for(int i=0; i<ints.length; i++) {
+			ints[i] = Integer.parseInt(newList.get(i));
+		}
+		return ints;
 	}
 }

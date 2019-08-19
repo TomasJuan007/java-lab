@@ -11,7 +11,7 @@ public class Solution1 {
             int temp = array[row][column];
             if (temp == target) {
                 return true;
-            } else if (target > temp) {
+            } else if (temp > target) {
                 row--;
             } else {
                 column++;
@@ -20,15 +20,23 @@ public class Solution1 {
         return false;
     }
 
-    public static void main(String[] args) {
-        Solution1 solution = new Solution1();
-        int[][] array = new int[3][3];
-        for (int i=0; i<3; i++) {
-            for (int j=0; j<3; j++) {
-                array[i][j] = i+j;
+    //less efficient one
+    @Deprecated
+    public boolean Find(int target, int [][] array) {
+        for(int i=0; i<array.length; i++) {
+            for(int j=0; j<array[0].length; j++) {
+                if (array[i][j] == target) {
+                    return true;
+                }
             }
         }
-        boolean test = solution.find(2, array);
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Solution1 solution = new Solution1();
+        int[][] array = {{1,2,8,9},{2,4,9,12},{4,7,10,13},{6,8,11,15}};
+        boolean test = solution.find(7, array);
         System.out.println(test);
     }
 }

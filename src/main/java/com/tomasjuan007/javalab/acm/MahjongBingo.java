@@ -8,8 +8,68 @@ import java.util.Scanner;
  * only Test
  */
 public class MahjongBingo {
-    //TODO: remove first-1 and first-2 instead of next one
+    //TODO
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        int[] input = new int[20];
+        while (n > 0) {
+            int index = (int) (n%10);
+            input[index]+=1;
+            n=n/10;
+        }
+        boolean result;
+        result = hoo(input);
+        if (result) {
+            System.out.println("yes");
+        } else {
+            System.out.println("no");
+        }
+        System.out.println("The result for 11223344567 is "+hoo(new int[]{1,1,2,2,3,3,4,4,5,6,7,0,0,0,0,0}));
+        System.out.println("The result for 11223355678 is "+hoo(new int[]{1,1,2,2,3,3,5,5,6,7,8,0,0,0,0,0}));
+    }
+
+    private static boolean hoo(int[] input) {
+        boolean result1 = false;
+        boolean pairExcluded = false;
+        for (int i=1; i<16; i++) {
+            int[] temp=input.clone();
+            if (temp[i] >= 2 && !pairExcluded) {
+                temp[i]=temp[i]-2;
+                pairExcluded = true;
+                result1 = hoo2(temp);
+            }
+            boolean result2 = hoo2(input);
+            if (result1 || result2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hoo2(int[] input) {
+        for (int i=1; i<16; i++) {
+            input[i] = input[i]%3;
+            if (input[i]==1) {
+                input[i]-=1;
+                input[i+1]-=1;
+                input[i+2]-=1;
+            } else if (input[i]==2) {
+                input[i]-=2;
+                input[i+1]-=2;
+                input[i+2]-=2;
+            }
+        }
+        for (int i=1; i<16; i++) {
+            if (input[i]!=0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //TODO: remove first-1 and first-2 instead of next one
+    public static void firstVersion(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextLong();
         LinkedList<Long> input = new LinkedList<>();

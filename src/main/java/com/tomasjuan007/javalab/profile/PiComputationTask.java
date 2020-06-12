@@ -1,7 +1,7 @@
 package com.tomasjuan007.javalab.profile;
 
 public class PiComputationTask extends Thread {
-    private static final int SCALE = 1000*1000;
+    private static final int SCALE = 1000*1000*1000;
 
     @Override
     public void run() {
@@ -15,6 +15,6 @@ public class PiComputationTask extends Thread {
         }
         long end = System.currentTimeMillis();
         double duration = end - start;
-        System.out.println(this.getName() + "Pi Computation task takes: " + duration);
+        System.out.println(this.getName() + " Pi Computation task takes: " + duration);
     }
 }

@@ -40,6 +40,7 @@ public class MyProfiler {
             executorService.submit(new IntComputationTask());
             executorService.submit(new FloatComputationTask());
             executorService.submit(new PiComputationTask());
+            executorService.submit(new SortComputationTask());
         }
         executorService.shutdown();
 

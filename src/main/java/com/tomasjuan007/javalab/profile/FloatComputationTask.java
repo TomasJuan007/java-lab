@@ -7,11 +7,13 @@ public class FloatComputationTask extends Thread {
     @Override
     public void run() {
         long start = System.currentTimeMillis();
+        //规模为M*N次的浮点类型加法运算
         for (float m=0; m<M; m++) {
             for (float n=0; n<N; n++) {
                 //do nothing
             }
         }
+
         long end = System.currentTimeMillis();
         double duration = end - start;
         System.out.println(this.getName() + " Float Computation task takes: " + duration);

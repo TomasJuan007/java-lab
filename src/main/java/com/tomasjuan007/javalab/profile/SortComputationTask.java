@@ -1,19 +1,30 @@
 package com.tomasjuan007.javalab.profile;
 
 public class SortComputationTask extends Thread {
-    private static final int SCALE = 10000;
+    private static final int SORT_SCALE = 10000;
 
     @Override
     public void run() {
         long start = System.currentTimeMillis();
-        int[] a = new int[SCALE];
-        for (int i=SCALE; i>0; i--) {
+        //规模为SORT_SCALE的快速排序运算
+        int[] a = new int[SORT_SCALE];
+        for (int i=SORT_SCALE; i>0; i--) {
             a[i-1] = i;
         }
         int[] result = quickSort(a,0,a.length-1);
+
         long end = System.currentTimeMillis();
         double duration = end - start;
         System.out.println(this.getName() + " Sort Computation task takes: " + duration);
+    }
+
+    private static int[] quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int part = partition(arr, low, high);
+            quickSort(arr, low, part - 1);
+            quickSort(arr, part + 1, high);
+        }
+        return arr;
     }
 
     private static int partition(int[] arr, int low, int high) {
@@ -31,14 +42,5 @@ public class SortComputationTask extends Thread {
             arr[low] = pivot;
         }
         return low;
-    }
-
-    private static int[] quickSort(int[] arr, int low, int high) {
-        if (low < high) {
-            int part = partition(arr, low, high);
-            quickSort(arr, low, part - 1);
-            quickSort(arr, part + 1, high);
-        }
-        return arr;
     }
 }

@@ -4,19 +4,19 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyProfiler {
-    private static final long SCORE_SCALE = 1000*1000*1000;
+    private static final long SCORE_FACTOR = 1000*1000*1000;
     public static void main(String[] args) {
         System.out.println("=== Provision ===");
+        System.out.println("score factor: " + SCORE_FACTOR);
         int nThreads = Runtime.getRuntime().availableProcessors();
         System.out.println("available processors: " + nThreads);
-        System.out.println("score scale: " + SCORE_SCALE);
         ThreadFactory threadFactory = new ThreadFactory() {
-            private final AtomicInteger poolNumber = new AtomicInteger(1);
             private final SecurityManager s = System.getSecurityManager();
-            private final ThreadGroup group =  (s != null) ?
-                    s.getThreadGroup() : Thread.currentThread().getThreadGroup();
-            private final AtomicInteger threadNumber = new AtomicInteger(1);
+            private final ThreadGroup group =  (s != null)
+                    ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+            private final AtomicInteger poolNumber = new AtomicInteger(1);
             private final String namePrefix = "pool-" + poolNumber.getAndIncrement() + "-thread-";
+            private final AtomicInteger threadNumber = new AtomicInteger(1);
 
             @Override
             public Thread newThread(Runnable r) {
@@ -30,6 +30,7 @@ public class MyProfiler {
                 return t;
             }
         };
+        System.out.println("pool size: " + nThreads);
         ExecutorService executorService = new ThreadPoolExecutor(nThreads, nThreads,
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(), threadFactory);
@@ -48,8 +49,8 @@ public class MyProfiler {
             System.out.println("=== Analyse ===");
             long end = System.currentTimeMillis();
             double duration = end - start;
-            System.out.println("duration" + duration);
-            double score = SCORE_SCALE/duration;
+            System.out.println("duration: " + duration);
+            double score = SCORE_FACTOR/duration;
             System.out.println("score: " + score);
         }));
 

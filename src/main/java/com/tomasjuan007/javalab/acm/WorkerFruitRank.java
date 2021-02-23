@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * 2021-02-23 Huawei Cloud Core Network
- * 输入第一行为工人数，接下来每行输入水果名，员工编号，搬运重量（测试用例都是正常数据没有多余空格）
+ * 1.输入第一行为工人数，接下来每行输入水果名，员工编号，搬运重量（测试用例都是正常数据没有多余空格）
  * 按水果分组后，按先重量后工人编号的顺序输出
  * input:
  * 5
@@ -25,6 +25,11 @@ import java.util.*;
  * Orange 3 88
  * Orange 1 90
  * Orange 5 90
+ * 2.输入一行字符串，获取处在最后的最长数字串
+ * input
+ * 1234567890abcd9.+12345.678.9ed
+ * output
+ * +12345.678
  **/
 public class WorkerFruitRank {
     public static void main(String[] args) {

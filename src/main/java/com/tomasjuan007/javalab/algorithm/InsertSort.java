@@ -6,14 +6,12 @@ import java.util.Scanner;
 
 public class InsertSort {
 	private static void insertSort(int[] ints) {
-		for(int i=0; i<ints.length; i++) {
+		for(int i=1; i<ints.length; i++) {
 			int temp = ints[i];
 			for(int j=i-1; j>=0; j--) {
-				if (ints[j] > ints[i]) {
+				if (ints[j] > temp) {
 					ints[j+1] = ints[j];
-				} else {
-					ints[j+1] = temp;
-					break;
+					ints[j] = temp;
 				}
 			}
 		}

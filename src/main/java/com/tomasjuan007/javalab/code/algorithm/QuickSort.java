@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.algorithm;
+package com.tomasjuan007.javalab.code.algorithm;
 
 public class QuickSort {
     public static void main(String[] args) {

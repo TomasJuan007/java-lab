@@ -1,25 +1,27 @@
-package com.tomasjuan007.javalab.algorithm;
+package com.tomasjuan007.javalab.code.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BubbleSort {
-	private static void bubbleSort(int[] ints) {
+public class SelectSort {
+	private static void selectSort(int[] ints) {
 		for (int i = 0; i < ints.length; i++) {
-			for (int j = 1; j < ints.length - i; j++) {
-				int temp = ints[j - 1];
-				if (temp > ints[j]) {
-					ints[j - 1] = ints[j];
-					ints[j] = temp;
+			int minIdx = i;
+			for (int j = i; j < ints.length; j++) {
+				if (ints[j] < ints[minIdx]) {
+					minIdx = j;
 				}
 			}
+			int temp = ints[i];
+			ints[i] = ints[minIdx];
+			ints[minIdx] = temp;
 		}
 	}
 
 	public static void main(String[] args) {
 		int[] ints = parseInput();
-		bubbleSort(ints);
+		selectSort(ints);
 		formatOutput(ints);
 	}
 

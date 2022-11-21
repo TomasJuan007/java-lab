@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.newcoder;
+package com.tomasjuan007.javalab.code.newcoder;
 
 
 /*二维数组中的查找*/

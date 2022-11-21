@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.acm;
+package com.tomasjuan007.javalab.code.acm;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;

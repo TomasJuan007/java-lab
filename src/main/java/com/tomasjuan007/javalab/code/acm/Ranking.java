@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.acm;
+package com.tomasjuan007.javalab.code.acm;
 
 /**
  * 2016-09-23 Huawei

@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.newcoder;
+package com.tomasjuan007.javalab.code.newcoder;
 
 public class Solution2 {
     public String replaceSpace(StringBuffer str) {

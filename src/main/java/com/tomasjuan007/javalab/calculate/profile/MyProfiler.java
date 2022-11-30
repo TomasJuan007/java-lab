@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.profile;
+package com.tomasjuan007.javalab.calculate.profile;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;

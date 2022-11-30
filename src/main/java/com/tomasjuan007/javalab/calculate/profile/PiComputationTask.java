@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.profile;
+package com.tomasjuan007.javalab.calculate.profile;
 
 public class PiComputationTask extends Thread {
     private static final int PI_SCALE = 1000*1000*1000;

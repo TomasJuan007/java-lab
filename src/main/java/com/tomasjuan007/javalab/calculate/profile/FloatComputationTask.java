@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.profile;
+package com.tomasjuan007.javalab.calculate.profile;
 
 public class FloatComputationTask extends Thread {
     private static final int M = 20*1000;

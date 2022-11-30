@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.profile;
+package com.tomasjuan007.javalab.calculate.profile;
 
 public class SortComputationTask extends Thread {
     private static final int SORT_SCALE = 10000;

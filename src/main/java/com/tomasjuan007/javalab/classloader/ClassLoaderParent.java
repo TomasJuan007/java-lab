@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.reflect;
+package com.tomasjuan007.javalab.classloader;
 
 public class ClassLoaderParent {
 	public static void main(String[] args) {

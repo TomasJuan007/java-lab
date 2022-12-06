@@ -9,16 +9,73 @@ public class FileType {
 
     private final static Map<String, String> FILE_TYPE_MAP = new HashMap<>();
 
-    private FileType(){}
-    static{
-        getAllFileType(); //初始化文件类型信息
+    static {
+        getAllFileType();
+    }
+
+    public static void main(String[] args) {
+        String type1 = getFileType("C:/Users/Administrator/Desktop/file1");
+        System.out.println("文件1类型：" + type1);
+        System.out.println();
+
+        String type2 = getFileType("C:/Users/Administrator/Desktop/file2");
+        System.out.println("文件2类型：" + type2);
+        System.out.println();
     }
 
     /**
-     * Description: [getAllFileType,常见文件头信息]
+     * 根据制定文件的文件头判断其文件类型
      */
-    private static void getAllFileType()
-    {
+    private static String getFileType(String filePath) {
+        String res = null;
+        try {
+            FileInputStream is = new FileInputStream(filePath);
+            byte[] b = new byte[10];
+            is.read(b, 0, b.length);
+
+            is.close();
+            String fileCode = bytesToHexString(b);
+
+            if (fileCode == null) throw new NullPointerException();
+            System.out.println(fileCode);
+
+
+            //这种方法在字典的头代码不够位数的时候可以用但是速度相对慢一点
+            for (String key : FILE_TYPE_MAP.keySet()) {
+                if (key.toLowerCase().startsWith(fileCode.toLowerCase()) || fileCode.toLowerCase().startsWith(key.toLowerCase())) {
+                    res = FILE_TYPE_MAP.get(key);
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    /**
+     * 得到上传文件的文件头
+     */
+    private static String bytesToHexString(byte[] src) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (src == null || src.length <= 0) {
+            return null;
+        }
+        for (byte b : src) {
+            int v = b & 0xFF;
+            String hv = Integer.toHexString(v);
+            if (hv.length() < 2) {
+                stringBuilder.append(0);
+            }
+            stringBuilder.append(hv);
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 常见文件头信息
+     */
+    private static void getAllFileType() {
         FILE_TYPE_MAP.put("ffd8ffe000104a464946", "jpg"); //JPEG (jpg)
         FILE_TYPE_MAP.put("89504e470d0a1a0a0000", "png"); //PNG (png)
         FILE_TYPE_MAP.put("47494638396126026f01", "gif"); //GIF (gif)
@@ -76,68 +133,5 @@ public class FileType {
         FILE_TYPE_MAP.put("AC9EBD8F", "qdf"); //Quicken (qdf)
         FILE_TYPE_MAP.put("E3828596", "pwl"); //Windows Password (pwl)
         FILE_TYPE_MAP.put("2E7261FD", "ram"); //Real Audio (ram)
-    }
-
-    /**
-     * 得到上传文件的文件头
-     * @param src byte
-     * @return hex
-     */
-    private static String bytesToHexString(byte[] src) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (src == null || src.length <= 0) {
-            return null;
-        }
-        for (byte b : src) {
-            int v = b & 0xFF;
-            String hv = Integer.toHexString(v);
-            if (hv.length() < 2) {
-                stringBuilder.append(0);
-            }
-            stringBuilder.append(hv);
-        }
-        return stringBuilder.toString();
-    }
-
-    /**
-     * 根据制定文件的文件头判断其文件类型
-     * @param filePath file path
-     * @return filrType
-     */
-    private static String getFileType(String filePath){
-        String res = null;
-        try {
-            FileInputStream is = new FileInputStream(filePath);
-            byte[] b = new byte[10];
-            is.read(b, 0, b.length);
-
-            is.close();
-            String fileCode = bytesToHexString(b);
-
-            if (fileCode == null) throw new NullPointerException();
-            System.out.println(fileCode);
-
-
-            //这种方法在字典的头代码不够位数的时候可以用但是速度相对慢一点
-            for (String key : FILE_TYPE_MAP.keySet()) {
-                if (key.toLowerCase().startsWith(fileCode.toLowerCase()) || fileCode.toLowerCase().startsWith(key.toLowerCase())) {
-                    res = FILE_TYPE_MAP.get(key);
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
-    public static void main(String[] args) {
-        String type1 = getFileType("C:/Users/Administrator/Desktop/file1");
-        System.out.println("文件1类型："+type1);
-        System.out.println();
-
-        String type2 = getFileType("C:/Users/Administrator/Desktop/file2");
-        System.out.println("文件2类型："+type2);
-        System.out.println();
     }
 }

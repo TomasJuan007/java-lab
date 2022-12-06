@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.spring;
+package com.tomasjuan007.javalab.spring.introspector;
 
 public class JavaBean {
 	private String userName;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans>
-	<bean id ="javaBean" class="com.tomasjuan007.javalab.spring.JavaBean">
+	<bean id ="javaBean" class="com.tomasjuan007.javalab.spring.introspector.JavaBean">
 		<property name="userName">
 			<value>李小龙</value>
 		</property>

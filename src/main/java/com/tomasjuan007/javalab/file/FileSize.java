@@ -9,7 +9,7 @@ public class FileSize {
             //如果是目录则递归计算其内容的总大小
             if (file.isDirectory()) {
                 File[] children = file.listFiles();
-                if (children == null || children.length ==0) {
+                if (children == null || children.length == 0) {
                     return 0.0;
                 }
                 double size = 0;
@@ -24,6 +24,7 @@ public class FileSize {
             return 0.0;
         }
     }
+
     public static void main(String[] args) {
         double totalSize = getDirSize(new File("C:\\Users\\Administrator\\Desktop\\"));
         System.out.println(totalSize);

@@ -7,8 +7,8 @@ import java.util.List;
 
 public class FileTailUtil {
     public static void main(String[] args) throws Exception {
-        tail("src/main/resources/spring/config.xml","5");
-        tail("src/main/java/com/tomasjuan007/javalab/file/FileTailUtil.java","3");
+        tail("src/main/resources/spring/config.xml", "5");
+        tail("src/main/java/com/tomasjuan007/javalab/file/FileTailUtil.java", "3");
     }
 
     private static void tail(String fileName, String lineNumber) throws Exception {
@@ -37,7 +37,7 @@ public class FileTailUtil {
                 c = rf.read();
                 if (c == '\n' || c == '\r') {
                     line = rf.readLine();
-                    if (line!=null) {
+                    if (line != null) {
                         result.add(line);
                     } else {
                         result.add("");
@@ -51,8 +51,8 @@ public class FileTailUtil {
                     result.add(rf.readLine());
                 }
             }
-            for (int i=lineNum-1;i>=0;i--) {
-                if (i<counter) {
+            for (int i = lineNum - 1; i >= 0; i--) {
+                if (i < counter) {
                     System.out.println(result.get(i));
                 }
             }

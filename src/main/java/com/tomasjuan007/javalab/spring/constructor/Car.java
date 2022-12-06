@@ -1,4 +1,4 @@
-package com.tomasjuan007.javalab.spring;
+package com.tomasjuan007.javalab.spring.constructor;
 
 public class Car {
 	private String brand;
